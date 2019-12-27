@@ -1,7 +1,11 @@
 const canvas = document.querySelector('#draw');
+
+/*getContext returns a drawing context on the canvas*/
 const ctx = canvas.getContext('2d');
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
 ctx.strokeStyle = 'red';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
@@ -14,7 +18,7 @@ let lastY = 0;
 let hue = 0;
 let direction = true;
 
-function draw(e) {
+draw = (e) => {
   if(!isDrawing) return;// stop the fn from running if mouse not down
   console.log(e);
   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
@@ -40,10 +44,10 @@ function draw(e) {
   }
   
 }
-function clearCanvas() {
+/*function to clear all content inside the defined canvas rectangle*/
+clearCanvas = () => {
     ctx.clearRect(0,0, canvas.width, canvas.height);
 }
-//ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 canvas.addEventListener('mousedown', (e) => {  
   isDrawing = true;
@@ -53,5 +57,3 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
-
-/*getContext returns a drawing context on the canvas*/
